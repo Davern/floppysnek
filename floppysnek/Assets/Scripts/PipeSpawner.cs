@@ -14,7 +14,9 @@ public class PipeSpawner : MonoBehaviour
 
     public static int score = 0;
 
-    bool counted = false;
+    Transform snake;
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -31,9 +33,9 @@ public class PipeSpawner : MonoBehaviour
         {
             pipeRate *= .95f;
 
-            if (pipeRate < 1)
+            if (pipeRate < 1.25)
             {
-                pipeRate = 1;
+                pipeRate = 1.25f;
             }
 
             nextPipe = pipeRate;
@@ -48,15 +50,15 @@ public class PipeSpawner : MonoBehaviour
             topPipe.name = flippedpipePrefab.name;
             bottomPipe.name = pipePrefab.name;
             float f = Random.Range(-.4f, .4f);
-            topPipe.transform.localScale += new Vector3(0, f, 0);
-            bottomPipe.transform.localScale += new Vector3(0, -f, 0);
+            topPipe.transform.localScale += new Vector3(0, f - .05f, 0);
+            bottomPipe.transform.localScale += new Vector3(0, -f - .05f, 0);
         }
-
 
     }
 
     void OnGUI()
     {
+        GUI.contentColor = Color.black;
         GUI.Label(new Rect(0, 0, 100, 50), "Score: " + score);
     }
 }
